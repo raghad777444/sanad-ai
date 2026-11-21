@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>سند AI</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef2ff;--card:#fff;--ink:#0a1a4a;--mut:#6b7596;--line:#dfe5f7;--navy:#071a4a;--blue:#1e6bff;--ok:#16a96b;--bad:#e5384f;--warn:#f0a020;--okbg:#dff6ea;--badbg:#fde3e6;--warnbg:#fff1d6;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1230;--card:#131c42;--ink:#e8edff;--mut:#9aa6d1;--line:#25305f;--okbg:#12362b;--badbg:#44202a;--warnbg:#3d3118}}
+:root[data-theme="dark"]{--bg:#0b1230;--card:#131c42;--ink:#e8edff;--mut:#9aa6d1;--line:#25305f;--okbg:#12362b;--badbg:#44202a;--warnbg:#3d3118}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:'Tajawal',system-ui,'Segoe UI',Tahoma,sans-serif;display:flex;justify-content:center}
+#app{width:100%;max-width:430px;height:100%;position:relative;overflow:hidden;display:flex;flex-direction:column}
+.dark{background:radial-gradient(circle at 50% 30%,#12337a,#071a4a 60%,#030c26);color:#fff}
+.center{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;gap:10px}
+.logo{font-size:44px;font-weight:800;letter-spacing:-1px}
+.shield{width:92px;height:104px}
+.bar{width:60%;height:4px;background:#ffffff30;border-radius:4px;overflow:hidden;margin-top:30px}
+.bar i{display:block;height:100%;width:0;background:#4aa3ff;animation:ld 2s forwards}
+@keyframes ld{to{width:100%}}
+.top{display:flex;align-items:center;gap:10px;padding:16px 18px}
+.top h2{font-size:20px;font-weight:800;flex:1}
+.ib{background:none;border:0;color:inherit;font:inherit;font-size:22px;cursor:pointer;padding:4px 8px}
+.scroll{flex:1;overflow-y:auto;padding:0 18px 18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px}
+input[type=text],input[type=email],input[type=password],textarea{width:100%;font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px;margin-bottom:10px}
+textarea{min-height:120px;resize:vertical}
+.btn{width:100%;font:inherit;font-weight:700;font-size:16px;border:0;border-radius:12px;padding:14px;background:var(--navy);color:#fff;cursor:pointer}
+.btn.o{background:none;color:var(--ink);border:1.5px solid var(--navy)}
+.btn:focus-visible,.ib:focus-visible,input:focus-visible,textarea:focus-visible,.row:focus-visible,.nav button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.hero{background:linear-gradient(135deg,#bfe3ff,#a9d0ff);color:#071a4a;border-radius:18px;padding:18px;display:flex;align-items:center;gap:14px;font-weight:800;font-size:22px}
+.hero small{display:block;font-weight:500;font-size:14px}
+.hero.bad{background:linear-gradient(135deg,#ffd3d8,#ffb3bc)}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+.stat b{font-size:28px;display:block}
+.stat span{color:var(--mut);font-size:14px}
+h3{font-size:17px;margin:14px 0 8px}
+.row{display:flex;align-items:center;gap:10px;padding:12px;background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:8px;cursor:pointer;font:inherit;color:inherit;width:100%;text-align:right}
+.row .g{flex:1}.row small{color:var(--mut);display:block}
+.dot{width:10px;height:10px;border-radius:50%;flex:none}
+.nav{display:flex;border-top:1px solid var(--line);background:var(--card);padding:6px 0}
+.nav button{flex:1;background:none;border:0;font:inherit;font-size:12px;color:var(--mut);padding:6px;cursor:pointer}
+.nav button.on{color:var(--blue);font-weight:700}
+.nav span{display:block;font-size:20px}
+.drop{border:2px dashed var(--blue);border-radius:16px;padding:22px;text-align:center;margin-bottom:14px;color:var(--mut)}
+.drop label{color:var(--blue);font-weight:700;cursor:pointer}
+.steps{display:flex;gap:6px;margin-top:26px;font-size:12px;width:100%}
+.steps div{flex:1;opacity:.35;transition:.4s}.steps div.on{opacity:1}
+.steps i{display:block;width:26px;height:26px;border-radius:50%;border:2px solid #4aa3ff;margin:0 auto 6px;line-height:22px;font-style:normal}
+.steps div.on i{background:#4aa3ff;color:#071a4a}
+.spin{width:130px;height:130px;border-radius:50%;border:3px solid #4aa3ff55;border-top-color:#4aa3ff;animation:sp 1.2s linear infinite;position:absolute}
+@keyframes sp{to{transform:rotate(360deg)}}
+.sev{border-radius:16px;padding:16px;display:flex;align-items:center;gap:12px;font-size:22px;font-weight:800}
+.sev.high{background:var(--badbg);color:var(--bad)}.sev.mid{background:var(--warnbg);color:var(--warn)}.sev.low{background:var(--okbg);color:var(--ok)}
+.sev small{display:block;font-size:14px;font-weight:500;color:var(--ink)}
+.kv{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px}.kv span:first-child{color:var(--mut)}
+.ck{display:flex;gap:10px;align-items:flex-start;padding:10px 0;font-size:15px}
+.ck i{color:var(--ok);font-style:normal;font-weight:800}
+.tabs{display:flex;gap:8px;margin-bottom:12px}
+.tabs button{flex:1;font:inherit;padding:10px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--mut);cursor:pointer}
+.tabs button.on{border-color:var(--blue);color:var(--blue);font-weight:700}
+.sw{width:46px;height:26px;border-radius:20px;background:var(--line);position:relative;border:0;cursor:pointer;flex:none}
+.sw::after{content:"";position:absolute;top:3px;right:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:.2s}
+.sw.on{background:var(--blue)}.sw.on::after{right:23px}
+.drawer{position:absolute;inset:0;background:radial-gradient(circle at 50% 20%,#12337a,#071a4a);color:#fff;padding:20px;display:flex;flex-direction:column;gap:8px;z-index:5}
+.drawer .row{background:none;border:0;color:#fff;font-size:17px}
+.drawer .row.on{background:#ffffff1f}
+.toast{position:absolute;bottom:80px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;padding:10px 18px;border-radius:20px;font-size:14px;z-index:9}
+.err{color:var(--bad);font-size:13px;margin:-4px 0 8px}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01s!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const SH='<svg class="shield" viewBox="0 0 92 104" fill="none" stroke="#6cc0ff" stroke-width="4"><path d="M46 4 6 18v32c0 26 18 42 40 50 22-8 40-24 40-50V18z" fill="#0d3a8a55"/><rect x="31" y="46" width="30" height="24" rx="4" fill="#6cc0ff" stroke="none"/><path d="M36 46v-8a10 10 0 0 1 20 0v8"/></svg>';
+const S={scr:'splash',reports:[],cur:null,tab:'prev',dark:false,toast:'',drawer:false,user:'user@example.com'};
+try{const r=JSON.parse(localStorage.getItem('sanad_reports')||'[]');if(Array.isArray(r))S.reports=r}catch(e){}
+const $=id=>document.getElementById(id);
+function save(){try{localStorage.setItem('sanad_reports',JSON.stringify(S.reports))}catch(e){}}
+function go(s){S.scr=s;S.drawer=false;render()}
+function say(t){S.toast=t;render();setTimeout(()=>{S.toast='';render()},1800)}
+
+/* ---------- محرك التحليل ---------- */
+const BRANDS=['الراجحي','الأهلي','أبشر','نفاذ','توكلنا','سمسا','aramex','أرامكو','stc','مدى','البريد السعودي','apple','amazon'];
+const URG=['عاجل','فورا','فورًا','خلال 24','سيتم إيقاف','سيتم حظر','تم تعليق','آخر فرصة','حسابك','تنبيه أمني','urgent','suspended','verify'];
+const SENS=['رمز التحقق','otp','كلمة المرور','رقم البطاقة','cvv','الرقم السري','تحديث بياناتك','أدخل بياناتك'];
+const PRIZE=['مبروك','ربحت','جائزة','هدية مجانية','استرداد مبلغ','مستحقات'];
+function analyze(txt){
+  const t=txt.toLowerCase(),sig=[];let score=0;
+  const urls=(txt.match(/(https?:\/\/[^\s]+|www\.[^\s]+|\b[a-z0-9-]+(\.[a-z0-9-]+)*\.(com|net|org|xyz|top|click|link|info|online|site|ly|cc|me|co|sa)(\/[^\s]*)?)/gi)||[]);
+  const add=(w,m)=>{score+=w;sig.push(m)};
+  if(URG.some(k=>t.includes(k)))add(20,'أسلوب استعجال وتهديد يدفعك للتصرف بسرعة');
+  if(SENS.some(k=>t.includes(k)))add(30,'يطلب بيانات حساسة مثل رمز التحقق أو بيانات البطاقة');
+  if(PRIZE.some(k=>t.includes(k)))add(15,'يعدك بجائزة أو مبلغ مالي غير متوقع');
+  const br=BRANDS.find(b=>t.includes(b.toLowerCase()));
+  urls.forEach(u=>{
+    const h=u.replace(/^https?:\/\//i,'').split('/')[0].toLowerCase();
+    if(/^\d{1,3}(\.\d{1,3}){3}/.test(h))add(35,'الرابط يستخدم عنوان IP بدل اسم موقع: '+h);
+    if(/\b(bit\.ly|tinyurl|t\.co|cutt\.ly|rb\.gy|is\.gd|shorturl)/.test(h))add(20,'رابط مختصر يخفي الوجهة الحقيقية: '+h);
+    if(/\.(xyz|top|click|link|online|site|cc)(:|$)/.test(h))add(20,'امتداد نطاق شائع في المواقع المشبوهة: '+h);
+    if(/^http:\/\//i.test(u))add(10,'الرابط غير مشفّر (http)');
+    if((h.match(/-/g)||[]).length>=2)add(15,'اسم النطاق فيه شرطات كثيرة: '+h);
+    if(u.includes('@'))add(25,'الرابط يحتوي على @ لتضليل الوجهة');
+    if(br&&!/(\.gov\.sa|alrajhibank\.com\.sa|alahli\.com|absher\.sa|nafath\.sa|stc\.com\.sa)$/.test(h))add(25,'ينتحل اسم جهة معروفة ('+br+') بنطاق غير رسمي: '+h);
+  });
+  if(!urls.length&&br&&score>0)add(10,'يذكر جهة معروفة (' + br + ') دون رابط رسمي');
+  score=Math.min(98,score);
+  const lvl=score>=60?'high':score>=30?'mid':'low';
+  const recs=lvl==='low'?['لم نجد مؤشرات واضحة، لكن تحقق من المرسل دائمًا','لا تشارك رموز التحقق مع أي أحد','استخدم التطبيق الرسمي للجهة بدل الروابط']:
+   ['تجنب النقر على الروابط','لا ترسل رمز التحقق أو بيانات البطاقة لأي جهة','تواصل مع الجهة عبر رقمها الرسمي للتأكد','فعّل المصادقة متعددة العوامل','أبلغ عن الرسالة وأحذفها'];
+  const now=new Date();
+  return{id:101+S.reports.length+1,lvl,score,sig,urls,recs,txt:txt.slice(0,200),date:now.toLocaleDateString('ar-SA'),time:now.toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit'}),fav:false};
+}
+function run(){
+  const v=($('msg')||{}).value||'';
+  if(v.trim().length<4){S.err='أدخل رسالة أو رابطًا للتحليل';render();return}
+  S.err='';S.pending=v;S.scr='loading';render();
+  let i=0;const iv=setInterval(()=>{i++;const el=document.querySelectorAll('.steps div');el.forEach((d,k)=>d.classList.toggle('on',k<=i));
+    if(i>=3){clearInterval(iv);const r=analyze(S.pending);S.reports.unshift(r);S.cur=r;save();setTimeout(()=>go('result'),500)}},700);
+}
+function readFile(inp){const f=inp.files[0];if(!f)return;const fr=new FileReader();fr.onload=()=>{S.draft=String(fr.result).slice(0,3000);render()};fr.readAsText(f)}
+function open_(id){S.cur=S.reports.find(r=>r.id===id);go('result')}
+function fav(id,e){e.stopPropagation();const r=S.reports.find(r=>r.id===id);r.fav=!r.fav;save();render()}
+function copyRep(){const r=S.cur;const t='تقرير حادثة #'+r.id+'\nالخطورة: '+r.score+'%\n'+r.sig.join('\n')+'\n\nالتوصيات:\n'+r.recs.join('\n');
+  try{navigator.clipboard.writeText(t).then(()=>say('تم نسخ التقرير'),()=>say('تعذر النسخ'))}catch(e){say('تعذر النسخ')}}
+function login(){const e=$('em').value.trim(),p=$('pw').value;
+  if(!/^\S+@\S+\.\S+$/.test(e)){S.err='أدخل بريدًا إلكترونيًا صحيحًا';render();return}
+  if(p.length<4){S.err='كلمة المرور قصيرة جدًا';render();return}
+  S.user=e;S.err='';go('home')}
+function theme(){S.dark=!S.dark;document.documentElement.setAttribute('data-theme',S.dark?'dark':'light');render()}
+
+/* ---------- الشاشات ---------- */
+const LV={high:['خطورة مرتفعة','⚠️','#e5384f'],mid:['خطورة متوسطة','⚠️','#f0a020'],low:['خطورة منخفضة','✅','#16a96b']};
+const nav=a=>`<div class="nav"><button class="${a=='home'?'on':''}" onclick="go('home')"><span>🏠</span>الرئيسية</button><button class="${a=='reports'?'on':''}" onclick="go('reports')"><span>📊</span>التقارير</button><button onclick="S.drawer=true;render()"><span>⋯</span>المزيد</button></div>`;
+const head=(t,back)=>`<div class="top"><button class="ib" aria-label="رجوع" onclick="go('${back||'home'}')">→</button><h2>${t}</h2></div>`;
+const V={
+splash:()=>`<div class="dark center">${SH}<div class="logo">سند AI</div><div>مساعدك الذكي للاستجابة<br>للحوادث السيبرانية</div><div class="bar"><i></i></div></div>`,
+login:()=>`<div class="scroll" style="padding-top:40px;text-align:center"><div style="font-size:34px;font-weight:800">🛡️ سند AI</div><h2 style="margin:18px 0 4px">مرحبًا بك في سند</h2><p style="color:var(--mut);margin-bottom:18px">سجّل الدخول للمتابعة</p>
+<input id="em" type="email" placeholder="البريد الإلكتروني" aria-label="البريد الإلكتروني" value="${S.user==='user@example.com'?'':S.user}"><input id="pw" type="password" placeholder="كلمة المرور" aria-label="كلمة المرور">${S.err?`<div class="err">${S.err}</div>`:''}
+<button class="btn" onclick="login()">تسجيل الدخول</button><p style="margin:12px 0;color:var(--mut)">أو</p><button class="btn o" onclick="go('home')">الدخول كزائر</button></div>`,
+home:()=>{const al=S.reports.filter(r=>r.lvl!=='low').length;return `<div class="top" style="background:var(--navy);color:#fff;padding-bottom:24px;flex-direction:column;align-items:flex-start"><div style="display:flex;width:100%;justify-content:space-between"><span style="font-size:20px">🔔</span><b style="background:#fff;color:var(--navy);border-radius:50%;width:30px;height:30px;display:grid;place-items:center">${S.user[0].toUpperCase()}</b></div><h2 style="font-size:24px">مرحبًا 👋</h2><span style="opacity:.8">جاهزون لحمايتك دائمًا</span></div>
+<div class="scroll" style="margin-top:-14px"><div class="hero ${al?'bad':''}">${al?'⚠️':'🛡️'}<div>${al?'تنبيهات تحتاج انتباهك':'النظام آمن'}<small>${al?'تم رصد '+al+' حالات مشبوهة':'لا توجد تهديدات حاليًا'}</small></div></div>
+<div class="stats"><div class="card stat"><b>${S.reports.length}</b><span>رسائل وروابط تم تحليلها</span></div><div class="card stat"><b>${al}</b><span>تنبيهات</span></div></div>
+<button class="btn" onclick="S.draft='';go('analyze')">＋ تحليل حادثة جديدة</button><h3>آخر الأنشطة</h3>
+${S.reports.slice(0,3).map(r=>`<button class="row" onclick="open_(${r.id})"><span class="dot" style="background:${LV[r.lvl][2]}"></span><span class="g">${r.lvl==='low'?'تم تحليل رسالة — آمنة':'تم رصد محتوى مشبوه'}<small>${r.date} ${r.time}</small></span></button>`).join('')||'<p style="color:var(--mut)">لا توجد أنشطة بعد. ابدأ بتحليل أول رسالة.</p>'}</div>${nav('home')}`},
+analyze:()=>`${head('تحليل حادثة جديدة')}<div class="scroll"><div class="drop">📤<br>اسحب الملف هنا أو <label>اختر ملف<input type="file" accept=".txt,.eml,.csv" hidden onchange="readFile(this)"></label></div>
+<h3 style="margin-top:0">أو الصق نص الرسالة أو الرابط</h3><textarea id="msg" aria-label="نص الحادثة" placeholder="مثال: مشبوه، يحتوي على روابط غير آمنة...">${S.draft||''}</textarea>${S.err?`<div class="err">${S.err}</div>`:''}
+<button class="btn" onclick="run()">✨ بدء التحليل</button><p style="color:var(--mut);font-size:13px;margin-top:10px">يتم التحليل داخل جهازك ولا تُرسل رسائلك لأي خادم.</p></div>`,
+loading:()=>`<div class="dark center" style="position:relative"><div style="position:relative;display:grid;place-items:center;height:140px"><div class="spin"></div>${SH.replace('class="shield"','style="width:60px"')}</div><h2>جاري تحليل الحادثة...</h2><span style="opacity:.7">يرجى الانتظار</span>
+<div class="steps"><div class="on"><i>✓</i>تحليل البيانات</div><div><i>✓</i>اكتشاف التهديدات</div><div><i>＋</i>توليد التقرير</div></div></div>`,
+result:()=>{const r=S.cur,l=LV[r.lvl];return `${head('نتيجة التحليل','home')}<div class="scroll"><div class="sev ${r.lvl}">${l[1]}<div>${l[0]}<small>نسبة الخطورة ${r.score}%</small></div></div>
+<h3>تفاصيل الحادثة</h3><div class="card"><div class="kv"><span>رقم التقرير</span><span>#${r.id}</span></div><div class="kv"><span>الوقت</span><span>${r.date} ${r.time}</span></div><div class="kv"><span>الروابط المكتشفة</span><span dir="ltr">${r.urls.length?r.urls.join(' , ').slice(0,60):'لا يوجد'}</span></div></div>
+<h3>أسباب الاشتباه</h3>${r.sig.length?r.sig.map(s=>`<div class="row" style="cursor:default"><span class="dot" style="background:var(--bad)"></span><span class="g">${s}</span></div>`).join(''):'<div class="card">لم تُرصد مؤشرات احتيال واضحة.</div>'}
+<button class="btn" style="margin-top:8px" onclick="go('recs')">عرض التوصيات ←</button></div>`},
+recs:()=>`${head('التوصيات','result')}<div class="scroll"><div class="card" style="text-align:center;margin-bottom:12px">💡<h3 style="margin:6px 0 0">خطوات الاستجابة المقترحة</h3></div><div class="card">${S.cur.recs.map(x=>`<div class="ck"><i>✓</i><span>${x}</span></div>`).join('')}</div><button class="btn" style="margin-top:14px" onclick="copyRep()">نسخ التقرير</button></div>`,
+reports:()=>{const L=S.reports.filter(r=>S.tab==='prev'||r.fav);return `${head('التقارير','home')}<div class="scroll"><div class="tabs"><button class="${S.tab=='prev'?'on':''}" onclick="S.tab='prev';render()">التقارير السابقة</button><button class="${S.tab=='fav'?'on':''}" onclick="S.tab='fav';render()">المفضلة</button></div>
+${L.map(r=>`<div class="row" role="button" tabindex="0" onclick="open_(${r.id})"><span class="dot" style="background:${LV[r.lvl][2]}"></span><span class="g">تقرير حادثة #${r.id}<small>${r.date} — ${LV[r.lvl][0]}</small></span><button class="ib" aria-label="مفضلة" onclick="fav(${r.id},event)">${r.fav?'★':'☆'}</button></div>`).join('')||'<p style="color:var(--mut);text-align:center;margin-top:30px">لا توجد تقارير هنا بعد.</p>'}</div>${nav('reports')}`},
+settings:()=>`${head('الإعدادات','home')}<div class="scroll"><div style="display:flex;align-items:center;gap:12px;margin-bottom:14px"><b style="background:var(--navy);color:#fff;border-radius:50%;width:56px;height:56px;display:grid;place-items:center;font-size:24px">${S.user[0].toUpperCase()}</b><div><b>${S.user.split('@')[0]}</b><small style="display:block;color:var(--mut)">${S.user}</small></div></div>
+<div class="row">👤<span class="g">الملف الشخصي</span></div><div class="row">🔔<span class="g">الإشعارات</span></div><div class="row">🛡️<span class="g">الأمان والخصوصية</span></div>
+<div class="row">🌙<span class="g">الوضع الليلي</span><button class="sw ${S.dark?'on':''}" aria-label="الوضع الليلي" onclick="theme()"></button></div>
+<div class="row" onclick="if(confirm('حذف كل التقارير المحفوظة؟')){S.reports=[];save();say('تم المسح')}">🗑️<span class="g">مسح التقارير المحفوظة</span></div><div class="row">ℹ️<span class="g">حول التطبيق — سند AI v1.0</span></div></div>${nav('')}`,
+help:()=>`${head('المساعدة والدعم','home')}<div class="scroll"><div class="card"><h3 style="margin-top:0">نصائح سريعة</h3><div class="ck"><i>✓</i><span>لا تشارك رمز التحقق مع أي شخص حتى لو ادّعى أنه من البنك</span></div><div class="ck"><i>✓</i><span>الجهات الرسمية لا تطلب كلمة المرور عبر الرسائل</span></div><div class="ck"><i>✓</i><span>افحص الرابط قبل فتحه، وتجنب الروابط المختصرة</span></div></div></div>${nav('')}`
+};
+function drawer(){const i=(ic,t,f,on)=>`<button class="row ${on?'on':''}" onclick="${f}">${ic}<span class="g">${t}</span></button>`;
+ return `<div class="drawer"><button class="ib" style="align-self:flex-start;color:#fff" aria-label="إغلاق" onclick="S.drawer=false;render()">✕</button><div style="text-align:center;margin:6px 0 16px;font-size:30px;font-weight:800">🛡️ سند AI</div>
+ ${i('🏠','الرئيسية',"go('home')",S.scr=='home')}${i('＋','تحليل حادثة جديدة',"S.draft='';go('analyze')")}${i('📊','التقارير',"go('reports')")}${i('⚙️','الإعدادات',"go('settings')")}${i('🎧','المساعدة والدعم',"go('help')")}<div style="flex:1"></div>${i('↪','تسجيل الخروج',"go('login')")}</div>`}
+function render(){
+  const a=$('app');const v=V[S.scr]();
+  a.className=(S.scr==='splash'||S.scr==='loading')?'dark':'';
+  a.innerHTML=v+(S.drawer?drawer():'')+(S.toast?`<div class="toast" role="status">${S.toast}</div>`:'');
+  if(S.scr==='splash'&&!S.t){S.t=setTimeout(()=>go('login'),2200)}
+}
+render();
+</script>
+</body>
+</html>
